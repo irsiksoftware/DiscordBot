@@ -131,6 +131,74 @@
           "topic": "Test bot commands here"
         }
       ]
+    },
+    {
+      "name": "📦 2DCharacterGenerator",
+      "description": "Private Project",
+      "channels": [
+        {
+          "name": "2dcharactergenerator-general",
+          "type": "text",
+          "topic": "General discussion about 2DCharacterGenerator"
+        },
+        {
+          "name": "2dcharactergenerator-feature-requests",
+          "type": "text",
+          "topic": "Request features for 2DCharacterGenerator - Tag the bot to create GitHub issues"
+        },
+        {
+          "name": "2dcharactergenerator-bug-reports",
+          "type": "text",
+          "topic": "Report bugs - Tag the bot to create GitHub issues"
+        },
+        {
+          "name": "2dcharactergenerator-commits",
+          "type": "text",
+          "topic": "Automated commit feed from GitHub",
+          "permissions": [
+            {
+              "role": "@everyone",
+              "allow": [
+                "ViewChannel",
+                "ReadMessageHistory"
+              ],
+              "deny": [
+                "SendMessages"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "2dcharactergenerator-releases",
+          "type": "text",
+          "topic": "Automated release announcements from GitHub",
+          "permissions": [
+            {
+              "role": "@everyone",
+              "allow": [
+                "ViewChannel",
+                "ReadMessageHistory"
+              ],
+              "deny": [
+                "SendMessages"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "2dcharactergenerator-discussions",
+          "type": "text",
+          "topic": "Community discussions about 2DCharacterGenerator"
+        }
+      ],
+      "permissions": [
+        {
+          "role": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        }
+      ]
     }
   ]
 }
