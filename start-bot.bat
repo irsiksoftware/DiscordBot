@@ -22,12 +22,19 @@ if not exist ".env" (
 REM Check if node_modules exists
 if not exist "node_modules" (
     echo [%date% %time%] Installing dependencies... >> bot-startup.log
-    call npm install
+    call npm install >> bot-startup.log 2>&1
+    if errorlevel 1 (
+        echo [%date% %time%] ERROR: npm install failed! >> bot-startup.log
+        echo ERROR: Failed to install dependencies!
+        pause
+        exit /b 1
+    )
+    echo [%date% %time%] Dependencies installed successfully. >> bot-startup.log
 )
 
 REM Start the bot with npm
 echo [%date% %time%] Launching bot... >> bot-startup.log
-call npm start 2>&1 | tee -a bot-startup.log
+call npm start >> bot-startup.log 2>&1
 
 REM If bot exits, log it
 echo [%date% %time%] Bot stopped. >> bot-startup.log
