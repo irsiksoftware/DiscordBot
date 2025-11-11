@@ -6,7 +6,7 @@ on:
 
 jobs:
   notify:
-    runs-on: self-hosted
+    runs-on: [self-hosted, Linux]
     steps:
       - name: Send Discord Notification
         continue-on-error: true
