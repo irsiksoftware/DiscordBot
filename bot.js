@@ -1215,6 +1215,9 @@ client.on('messageCreate', async (message) => {
     // Ignore bot messages
     if (message.author.bot) return;
 
+    // Ignore replies to bot messages (user is just replying, not mentioning)
+    if (message.reference) return;
+
     // Handle bot mentions for Claude conversations
     if (message.mentions.has(client.user)) {
         const channelName = message.channel.name;

@@ -90,6 +90,9 @@ async function handleMessage(message) {
     // Ignore bot messages
     if (message.author.bot) return;
 
+    // Ignore replies to bot messages (user is just replying, not mentioning)
+    if (message.reference) return;
+
     const client = message.client;
 
     // Handle bot mentions
