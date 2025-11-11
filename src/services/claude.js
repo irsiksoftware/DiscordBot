@@ -47,17 +47,24 @@ You are a helpful software development expert. Provide concise, actionable advic
 ${question}`;
 
         log(logFile, `Full Prompt Length: ${contextPrompt.length} characters`);
-        log(logFile, 'Spawning claude CLI process...');
-        log(logFile, `Command: claude "${contextPrompt.substring(0, 100)}..."`);
+        log(logFile, 'Spawning claude CLI process with --dangerously-skip-permissions...');
+        log(logFile, `Command: echo <prompt> | claude --dangerously-skip-permissions`);
         log(logFile, '');
 
-        // Spawn claude CLI process
-        const claudeProcess = spawn('claude', [contextPrompt], {
+        // Spawn claude CLI process with --dangerously-skip-permissions (matches temp-swarm pattern)
+        // Pass prompt via stdin to avoid shell quoting issues with multiline prompts
+        const claudeProcess = spawn('claude', ['--dangerously-skip-permissions'], {
             shell: true,
             stdio: ['pipe', 'pipe', 'pipe'],
         });
 
         log(logFile, `Process spawned with PID: ${claudeProcess.pid}`);
+        log(logFile, 'Writing prompt to stdin...');
+
+        // Write prompt to stdin and close it
+        claudeProcess.stdin.write(contextPrompt);
+        claudeProcess.stdin.end();
+        log(logFile, 'Prompt written to stdin, awaiting response...');
 
         // Collect stdout
         claudeProcess.stdout.on('data', (data) => {
