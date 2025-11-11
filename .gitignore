@@ -1,6 +1,7 @@
 .env
 node_modules/
 *.log
+logs/
 bot-*.js
 test-*.js
 commands.json
