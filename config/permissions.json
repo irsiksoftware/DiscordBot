@@ -30,6 +30,33 @@
           "requireAdmin": true
         }
       }
+    },
+    "1423393876886163539": {
+      "name": "IrsikSoftware",
+      "enabled": true,
+      "commands": {
+        "askgpt": {
+          "enabled": true,
+          "channels": ["*"],
+          "roles": ["*"]
+        },
+        "readme": {
+          "enabled": true,
+          "channels": ["*"],
+          "roles": ["*"]
+        },
+        "feature-request": {
+          "enabled": true,
+          "channels": ["*-feature-requests"],
+          "roles": ["*"]
+        },
+        "purge": {
+          "enabled": true,
+          "channels": ["*"],
+          "roles": ["Founder", "Administrator"],
+          "requireAdmin": true
+        }
+      }
     }
   },
   "globalAdminRoles": ["Founder", "Administrator"]
