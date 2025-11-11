@@ -1339,42 +1339,14 @@ client.on('messageCreate', async (message) => {
             return;
         }
 
-        // Claude AI conversation mode for all other mentions
-        try {
-            await message.channel.sendTyping();
-
-            const userMessage = message.content.replace(/<@!?\d+>/g, '').trim();
-
-            if (userMessage.length < 3) {
-                await message.reply('Please ask me a question about NeonLadder development!');
-                return;
-            }
-
-            const response = await askClaude(userMessage, message.channel.id);
-
-            // Discord has 2000 char limit, split if needed
-            if (response.length <= 2000) {
-                await message.reply(response);
-            } else {
-                // Split into chunks
-                const chunks = [];
-                for (let i = 0; i < response.length; i += 1900) {
-                    chunks.push(response.substring(i, i + 1900));
-                }
-
-                await message.reply(chunks[0]);
-                for (let i = 1; i < chunks.length && i < 5; i++) {
-                    await message.channel.send(chunks[i]);
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                }
-            }
-        } catch (error) {
-            console.error('Claude conversation error:', error);
-            await message.reply(
-                `❌ Sorry, I encountered an error: ${error.message}\n\n` +
-                `Make sure \`claude\` CLI is installed and configured.`
-            );
-        }
+        // For all other bot mentions, direct users to use slash commands
+        await message.reply(
+            '💡 Please use slash commands to interact with me:\n' +
+            '• `/askgpt` - Ask GPT a question\n' +
+            '• `/feature-request` - Submit a feature request\n' +
+            '• `/readme` - Fetch a repository README\n' +
+            '• `/help` - See all available commands'
+        );
         return;
     }
 
