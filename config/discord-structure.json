@@ -199,6 +199,66 @@
           ]
         }
       ]
+    },
+    {
+      "name": "📦 DiscordBot",
+      "description": "Public Project",
+      "channels": [
+        {
+          "name": "discordbot-general",
+          "type": "text",
+          "topic": "General discussion about DiscordBot"
+        },
+        {
+          "name": "discordbot-feature-requests",
+          "type": "text",
+          "topic": "Request features for DiscordBot - Tag the bot to create GitHub issues"
+        },
+        {
+          "name": "discordbot-bug-reports",
+          "type": "text",
+          "topic": "Report bugs - Tag the bot to create GitHub issues"
+        },
+        {
+          "name": "discordbot-commits",
+          "type": "text",
+          "topic": "Automated commit feed from GitHub",
+          "permissions": [
+            {
+              "role": "@everyone",
+              "allow": [
+                "ViewChannel",
+                "ReadMessageHistory"
+              ],
+              "deny": [
+                "SendMessages"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "discordbot-releases",
+          "type": "text",
+          "topic": "Automated release announcements from GitHub",
+          "permissions": [
+            {
+              "role": "@everyone",
+              "allow": [
+                "ViewChannel",
+                "ReadMessageHistory"
+              ],
+              "deny": [
+                "SendMessages"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "discordbot-discussions",
+          "type": "text",
+          "topic": "Community discussions about DiscordBot"
+        }
+      ]
     }
   ]
 }
