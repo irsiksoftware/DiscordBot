@@ -8,7 +8,7 @@
       "name": "Neon Ladder",
       "enabled": true,
       "commands": {
-        "askgpt": {
+        "ask-claude": {
           "enabled": true,
           "channels": ["*"],
           "roles": ["*"]
@@ -35,7 +35,7 @@
       "name": "IrsikSoftware",
       "enabled": true,
       "commands": {
-        "askgpt": {
+        "ask-claude": {
           "enabled": true,
           "channels": ["*"],
           "roles": ["*"]

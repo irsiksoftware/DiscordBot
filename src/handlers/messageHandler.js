@@ -201,7 +201,7 @@ async function handleMessage(message) {
         // For all other bot mentions, direct users to use slash commands
         await message.reply(
             '💡 Please use slash commands to interact with me:\n' +
-            '• `/askgpt` - Ask GPT a question\n' +
+            '• `/ask-claude` - Ask Claude a question\n' +
             '• `/feature-request` - Submit a feature request\n' +
             '• `/readme` - Fetch a repository README\n' +
             '• `/help` - See all available commands'

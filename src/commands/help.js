@@ -15,7 +15,7 @@ module.exports = {
             .setDescription('Here are the available commands and features:')
             .addFields(
                 { name: '💬 Mention Bot', value: 'Tag the bot with `@NeonLadder Bot <question>` to chat with Claude AI', inline: false },
-                { name: '🎮 AI Commands', value: '`/askgpt` - Ask GPT about Unity/NeonLadder development', inline: false },
+                { name: '🎮 AI Commands', value: '`/ask-claude` - Ask Claude AI about software development', inline: false },
                 { name: '📄 Project Commands', value: '`/readme` - Fetch repository README\n`/feature-request` - Submit feature request', inline: false },
                 { name: '⚙️ Bot Commands', value: '`/ping` - Check latency\n`/clear` - Clear conversation\n`/help` - This message', inline: false }
             );

@@ -364,7 +364,7 @@ async function helpCommand(message) {
     .setDescription('Here are the available commands and features:')
     .addFields(
       { name: '💬 Mention Bot', value: 'Tag the bot with `@NeonLadder Bot <question>` to chat with Claude AI', inline: false },
-      { name: '🎮 Slash Commands', value: '`/askgpt` - Ask GPT\n`/readme` - Fetch repo README\n`/feature-request` - Submit feature request\n`/purge` - Delete messages (Admin)', inline: false },
+      { name: '🎮 Slash Commands', value: '`/ask-claude` - Ask Claude AI\n`/readme` - Fetch repo README\n`/feature-request` - Submit feature request\n`/purge` - Delete messages (Admin)', inline: false },
       { name: '⚙️ Bot Commands', value: '`!ping` - Check latency\n`!clear` - Clear conversation\n`!help` - This message\n`!listrepos` - List configured repos', inline: false }
     );
 

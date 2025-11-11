@@ -237,21 +237,21 @@ async function getGitHubIssues() {
 // Slash commands
 const commands = [
     new SlashCommandBuilder()
-        .setName('askgpt')
-        .setDescription('Ask GPT about Unity/NeonLadder development')
+        .setName('ask-claude')
+        .setDescription('Ask Claude AI about software development')
         .addStringOption(option =>
             option.setName('question')
-                .setDescription('Your question for GPT')
+                .setDescription('Your question for Claude')
                 .setRequired(true)
         ),
 
-    // Disabled - requires Claude CLI installation
+    // Disabled - requires OpenAI API key
     // new SlashCommandBuilder()
-    //     .setName('ask-claude')
-    //     .setDescription('Ask Claude AI about Unity/NeonLadder development')
+    //     .setName('askgpt')
+    //     .setDescription('Ask GPT about Unity/NeonLadder development')
     //     .addStringOption(option =>
     //         option.setName('question')
-    //             .setDescription('Your question for Claude')
+    //             .setDescription('Your question for GPT')
     //             .setRequired(true)
     //     ),
 
@@ -655,24 +655,6 @@ client.on('interactionCreate', async (interaction) => {
 
     try {
         switch (commandName) {
-            case 'askgpt':
-                await interaction.deferReply();
-                const question = options.getString('question');
-                const gptResponse = await askGPT(question);
-
-                const gptEmbed = new EmbedBuilder()
-                    .setColor('#00D4FF')
-                    .setTitle('🤖 GPT-4o Analysis')
-                    .setDescription(gptResponse)
-                    .addFields(
-                        { name: '❓ Question', value: question, inline: false }
-                    )
-                    .setFooter({ text: 'NeonLadder Dual-AI System' })
-                    .setTimestamp();
-
-                await interaction.editReply({ embeds: [gptEmbed] });
-                break;
-
             case 'ask-claude':
                 await interaction.deferReply();
                 const claudeQuestion = options.getString('question');
@@ -922,7 +904,7 @@ client.on('interactionCreate', async (interaction) => {
                     .setDescription('Here are the available commands and features:')
                     .addFields(
                         { name: '💬 Mention Bot', value: 'Tag the bot with `@NeonLadder Bot <question>` to chat with Claude AI', inline: false },
-                        { name: '🎮 AI Commands', value: '`/ask-gpt` - Ask GPT-4o\n`/ask-claude` - Ask Claude AI', inline: false },
+                        { name: '🎮 AI Commands', value: '`/ask-claude` - Ask Claude AI', inline: false },
                         { name: '📊 Project Commands', value: '`/pbi-list` - GitHub issues\n`/steam-status` - Steam progress\n`/test-summary` - Test results\n`/build-status` - Build info', inline: false },
                         { name: '⚙️ Bot Commands', value: '`/ping` - Check latency\n`/clear` - Clear conversation\n`/help` - This message\n`/listrepos` - List repos', inline: false }
                     );
@@ -1342,7 +1324,7 @@ client.on('messageCreate', async (message) => {
         // For all other bot mentions, direct users to use slash commands
         await message.reply(
             '💡 Please use slash commands to interact with me:\n' +
-            '• `/askgpt` - Ask GPT a question\n' +
+            '• `/ask-claude` - Ask Claude a question\n' +
             '• `/feature-request` - Submit a feature request\n' +
             '• `/readme` - Fetch a repository README\n' +
             '• `/help` - See all available commands'
