@@ -4,14 +4,30 @@
 Write-Host "Checking system environment variables..." -ForegroundColor Cyan
 Write-Host ""
 
+# Find GitHub token from any of the PAT environment variables
+$githubToken = $env:GITHUB_TOKEN
+if (-not $githubToken) {
+    # Try to find any GITHUB_*_PAT variable
+    $patVars = @("GITHUB_WOLVERINE_PAT", "GITHUB_HULK_PAT", "GITHUB_BLACKWIDOW_PAT", "GITHUB_CYCLOPS_PAT", "GITHUB_DRSTRANGE_PAT", "GITHUB_NEAR_PAT", "GITHUB_NICKFURY_PAT")
+    foreach ($patVar in $patVars) {
+        $value = [Environment]::GetEnvironmentVariable($patVar)
+        if ($value) {
+            $githubToken = $value
+            Write-Host "[INFO] Using $patVar for GITHUB_TOKEN" -ForegroundColor Cyan
+            break
+        }
+    }
+}
+
 $envVars = @{
     "DISCORD_TOKEN" = $env:DISCORD_TOKEN
     "DISCORD_APPLICATION_ID" = $env:DISCORD_APPLICATION_ID
     "OPENAI_API_KEY" = $env:OPENAI_API_KEY
-    "GITHUB_TOKEN" = $env:GITHUB_TOKEN
-    "GITHUB_OWNER" = $env:GITHUB_OWNER
-    "ENABLE_WEBHOOKS" = $env:ENABLE_WEBHOOKS
-    "WEBHOOK_PORT" = $env:WEBHOOK_PORT
+    "GITHUB_TOKEN" = $githubToken
+    "GITHUB_OWNER" = if ($env:GITHUB_OWNER) { $env:GITHUB_OWNER } else { "your-github-org" }
+    "GITHUB_REPO" = $env:GITHUB_REPO
+    "ENABLE_WEBHOOKS" = if ($env:ENABLE_WEBHOOKS) { $env:ENABLE_WEBHOOKS } else { "false" }
+    "WEBHOOK_PORT" = if ($env:WEBHOOK_PORT) { $env:WEBHOOK_PORT } else { "3000" }
     "WEBHOOK_SECRET" = $env:WEBHOOK_SECRET
 }
 
